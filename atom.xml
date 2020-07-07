@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yangttaaoo.github.io/"/>
-  <updated>2020-05-31T14:10:24.317Z</updated>
+  <updated>2020-07-07T12:13:36.867Z</updated>
   <id>https://yangttaaoo.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>十大经典排序算法整理汇总（附代码）</title>
-    <link href="https://yangttaaoo.github.io/2020/02/16/sort-algorithms/"/>
-    <id>https://yangttaaoo.github.io/2020/02/16/sort-algorithms/</id>
-    <published>2020-02-16T07:09:23.000Z</published>
-    <updated>2020-05-31T14:10:24.317Z</updated>
+    <title>数组和链表对于内存以及CPU的访问缓存机制</title>
+    <link href="https://yangttaaoo.github.io/2020/06/04/arr-cpu/"/>
+    <id>https://yangttaaoo.github.io/2020/06/04/arr-cpu/</id>
+    <published>2020-06-04T01:29:42.000Z</published>
+    <updated>2020-07-07T12:13:36.867Z</updated>
     
     <summary type="html">
     
@@ -29,18 +29,20 @@
       
         
         
-          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+          &lt;h3 id=&quot;CPU缓存对数组友好而对链表不友好&quot;&gt;&lt;a href=&quot;#CPU缓存对数组友好而对链表不友好&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
-      <category term="编程算法" scheme="https://yangttaaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
+      <category term="缓存机制" scheme="https://yangttaaoo.github.io/categories/%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/"/>
     
     
-      <category term="leetcode" scheme="https://yangttaaoo.github.io/tags/leetcode/"/>
+      <category term="数组" scheme="https://yangttaaoo.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="算法" scheme="https://yangttaaoo.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="链表" scheme="https://yangttaaoo.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="CPU缓存" scheme="https://yangttaaoo.github.io/tags/CPU%E7%BC%93%E5%AD%98/"/>
     
   </entry>
   
