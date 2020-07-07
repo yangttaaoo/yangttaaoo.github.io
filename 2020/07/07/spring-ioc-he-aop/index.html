@@ -8,8 +8,7 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Spring IOC和AOP的原理及相关面试题1.什么是IOC和DI?有什么区别？2.IOC容器的初始化过程?3.什么是AOP?4.AOP的实现原理?5.AOP应用场景?
-">
+    <meta name="description" content="Spring IOC和AOP的原理及相关面试题1.什么是IOC和DI?有什么区别？控制反转(Ioc)：它不是技术，而是一种思想，将创建对象的控制权力交给spring框架。由Spring来负责控制对象的生命周期和对象间的关系，其核心是通过反射">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -422,14 +421,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    50
+                    670
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -440,7 +439,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Spring-IOC和AOP的原理及相关面试题"><a href="#Spring-IOC和AOP的原理及相关面试题" class="headerlink" title="Spring IOC和AOP的原理及相关面试题"></a>Spring IOC和AOP的原理及相关面试题</h3><p>1.什么是IOC和DI?有什么区别？<br>2.IOC容器的初始化过程?<br>3.什么是AOP?<br>4.AOP的实现原理?<br>5.AOP应用场景?</p>
+                <h3 id="Spring-IOC和AOP的原理及相关面试题"><a href="#Spring-IOC和AOP的原理及相关面试题" class="headerlink" title="Spring IOC和AOP的原理及相关面试题"></a>Spring IOC和AOP的原理及相关面试题</h3><p>1.什么是IOC和DI?有什么区别？<br>控制反转(Ioc)：它不是技术，而是一种思想，将创建对象的控制权力交给spring框架。由Spring来负责控制对象的生命周期和对象间的关系，其核心是通过反射调用set方法来进行数据的注入。<br>依赖注入(DI)：指Spring创建对象的过程中，将对象依赖的属性（简单值，集合，对象）通过配置的方式进行设值。<br>IoC和DI其实是同一个概念的不同角度描述，DI相对IoC而言，明确描述了被管理的对象中，依赖的属性也应该由Spring容器自动注入<br>2.IOC容器的初始化过程?<br>(1).BeanDefinition的Resource定位<br>(2).BeanDefinition的载入<br>(3).向IoC容器注册BeanDefinition<br>IOC容器的初始化过程，一般不包含bean的依赖注入的实现，在spring IOC设计中，bean的注册和依赖注入是两个过程，，依赖注入一般发生在应用第一次索取bean的时候，但是也可以在xm中配置，在容器初始化的时候，这个bean就完成了初始化。<br>3.bean如何定义？<br>(1)xml文件<br>(2)Spring4.x的javaConfig方式<br>// 创建一个类，命名为SpringConfiguration<br>@Configuration<br>public class SpringConfiguration {<br>    @Bean<br>    @Scope(value = “singleton”)<br>    public Student student(){<br>        return new Student(11,”jack”,22);<br>    }<br>}<br>3.注入方式有哪几种？<br>构造方法注入<br>setter注入<br>基于注解注入（常用）<br>4.bean是如何创建的？<br>5.springIOC bean的生命周期？<br>1.实例化 Instantiation InstantiationAwareBeanPostProcessor<br>2.属性赋值 Populate<br>3.初始化 Initialization(可扩展) BeanPostProcessor<br>4.销毁 Destruction(可扩展)<br>① 通过构造器或工厂方法创建bean实例<br>② 为bean的属性设置值和对其他bean的引用<br>③ 调用bean的初始化方法<br>④ bean可以使用了<br>⑤ 当容器关闭时，调用bean的销毁方法<br>在配置bean时，通过init-method和destroy-method 属性为bean指定初始化和销毁方法<br>6.bean的后置处理器<br>① bean后置处理器允许在调用初始化方法前后对bean进行额外的处理<br>② bean后置处理器对IOC容器里的所有bean实例逐一处理，而非单一实例。其典型应用是：检查bean属性的正确性或根据特定的标准更改bean的属性。<br>③ bean后置处理器时需要实现接口：<br>org.springframework.beans.factory.config.BeanPostProcessor。在初始化方法被调用前后，Spring将把每个bean实例分别传递给上述接口的以下两个方法：<br>*postProcessBeforeInitialization(Object, String)<br>*postProcessAfterInitialization(Object, String)<br>5.数据是如何注入的？<br>利用反射<br>3.什么是AOP?<br>4.AOP的实现原理?<br>5.AOP应用场景?</p>
 
             </div>
             <hr />
@@ -817,8 +816,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring IOC和AOP的原理及相关面试题1.什么是IOC和DI?有什么区别？2.IOC容器的初始化过程?3.什么是AOP?4.AOP的实现原理?5.AOP应用场景?
-
+                            Spring IOC和AOP的原理及相关面试题1.什么是IOC和DI?有什么区别？控制反转(Ioc)：它不是技术，而是一种思想，将创建对象的控制权力交给spring框架。由Spring来负责控制对象的生命周期和对象间的关系，其核心是通过反射
                         
                     </div>
                     <div class="publish-info">
@@ -1098,7 +1096,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">377</span>
+            <span class="white-color">997</span>
             
 
             <br>
