@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Spring IOC和AOP</title>
+      <link href="/2020/07/07/spring-ioc-he-aop/"/>
+      <url>/2020/07/07/spring-ioc-he-aop/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Spring-IOC和AOP的原理及相关面试题"><a href="#Spring-IOC和AOP的原理及相关面试题" class="headerlink" title="Spring IOC和AOP的原理及相关面试题"></a>Spring IOC和AOP的原理及相关面试题</h3><p>1.什么是IOC和DI?有什么区别？<br>2.IOC容器的初始化过程?<br>3.什么是AOP?<br>4.AOP的实现原理?<br>5.AOP应用场景?</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数组和链表对于内存以及CPU的访问缓存机制</title>
       <link href="/2020/06/04/arr-cpu/"/>
       <url>/2020/06/04/arr-cpu/</url>

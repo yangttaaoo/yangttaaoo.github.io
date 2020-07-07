@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yangttaaoo.github.io/"/>
-  <updated>2020-07-07T12:13:36.867Z</updated>
+  <updated>2020-07-07T12:25:25.644Z</updated>
   <id>https://yangttaaoo.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring IOC和AOP</title>
+    <link href="https://yangttaaoo.github.io/2020/07/07/spring-ioc-he-aop/"/>
+    <id>https://yangttaaoo.github.io/2020/07/07/spring-ioc-he-aop/</id>
+    <published>2020-07-07T12:18:55.000Z</published>
+    <updated>2020-07-07T12:25:25.644Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Spring-IOC和AOP的原理及相关面试题&quot;&gt;&lt;a href=&quot;#Spring-IOC和AOP的原理及相关面试题&quot; class=&quot;headerlink&quot; title=&quot;Spring IOC和AOP的原理及相关面试题&quot;&gt;&lt;/a&gt;Spring
+        
+      
+    
+    </summary>
+    
+      <category term="面试题" scheme="https://yangttaaoo.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+      <category term="Spring" scheme="https://yangttaaoo.github.io/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>数组和链表对于内存以及CPU的访问缓存机制</title>
