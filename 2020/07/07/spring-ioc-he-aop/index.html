@@ -442,14 +442,15 @@
                 <h3 id="Spring-IOC和AOP的原理及相关面试题"><a href="#Spring-IOC和AOP的原理及相关面试题" class="headerlink" title="Spring IOC和AOP的原理及相关面试题"></a>Spring IOC和AOP的原理及相关面试题</h3><h4 id="1-什么是IOC和DI-有什么区别？"><a href="#1-什么是IOC和DI-有什么区别？" class="headerlink" title="1.什么是IOC和DI?有什么区别？"></a>1.什么是IOC和DI?有什么区别？</h4><p>控制反转(Ioc)：它不是技术，而是一种思想，将创建对象的控制权力交给spring框架。由Spring来负责控制对象的生命周期和对象间的关系，其核心是通过反射调用set方法来进行数据的注入。<br>依赖注入(DI)：指Spring创建对象的过程中，将对象依赖的属性（简单值，集合，对象）通过配置的方式进行设值。<br>IoC和DI其实是同一个概念的不同角度描述，DI相对IoC而言，明确描述了被管理的对象中，依赖的属性也应该由Spring容器自动注入</p>
 <h4 id="2-IOC容器的初始化过程"><a href="#2-IOC容器的初始化过程" class="headerlink" title="2.IOC容器的初始化过程?"></a>2.IOC容器的初始化过程?</h4><p>(1).BeanDefinition的Resource定位<br>Resource，对资源的抽象，它的每一个实现类都代表了一种资源的访问策略，如ClasspathResource 、 URLResource ，FileSystemResource 等。<br>(2).BeanDefinition的载入<br>(3).向IoC容器注册BeanDefinition<br>IOC容器的初始化过程，一般不包含bean的依赖注入的实现，在spring IOC设计中，bean的注册和依赖注入是两个过程，，依赖注入一般发生在应用第一次索取bean的时候，但是也可以在xm中配置，在容器初始化的时候，这个bean就完成了初始化。</p>
 <h4 id="3-bean如何创建？"><a href="#3-bean如何创建？" class="headerlink" title="3.bean如何创建？"></a>3.bean如何创建？</h4><p>(1)xml文件<br>(2)Spring4.x的javaConfig方式<br>// 创建一个类，命名为SpringConfiguration</p>
-<pre><code>@Configuration
-public class SpringConfiguration {
-    @Bean
-    @Scope(value = &quot;singleton&quot;)
-    public Student student(){
-        return new Student(11,&quot;jack&quot;,22);
-    }
-} </code></pre><h4 id="4-注入方式有哪几种？"><a href="#4-注入方式有哪几种？" class="headerlink" title="4.注入方式有哪几种？"></a>4.注入方式有哪几种？</h4><p>构造方法注入<br>setter注入<br>基于注解注入（常用）</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringConfiguration</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token annotation punctuation">@Scope</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"singleton"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> Student <span class="token function">student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token string">"jack"</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="4-注入方式有哪几种？"><a href="#4-注入方式有哪几种？" class="headerlink" title="4.注入方式有哪几种？"></a>4.注入方式有哪几种？</h4><p>构造方法注入<br>setter注入<br>基于注解注入（常用）</p>
 <h4 id="5-springIOC-bean的生命周期？"><a href="#5-springIOC-bean的生命周期？" class="headerlink" title="5.springIOC bean的生命周期？"></a>5.springIOC bean的生命周期？</h4><p> <img src="shengMingZhouQi.jpg" alt="Bean的生命周期"></p>
 <p>1.实例化 Instantiation InstantiationAwareBeanPostProcessor </p>
 <p>2.属性赋值 Populate</p>
@@ -469,31 +470,32 @@ public class SpringConfiguration {
 <h4 id="14-Spring-AOP的实现原理"><a href="#14-Spring-AOP的实现原理" class="headerlink" title="14.Spring AOP的实现原理?"></a>14.Spring AOP的实现原理?</h4><p>动态代理又分为:</p>
 <p>(1)JDK动态代理</p>
 <p>(2)CGLIB 动态代理<br>Spring AOP动态代理的两种模式都使用了，其核心代码实现如下：</p>
-<pre><code>public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
-    public DefaultAopProxyFactory() {
-    }
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DefaultAopProxyFactory</span> <span class="token keyword">implements</span> <span class="token class-name">AopProxyFactory</span><span class="token punctuation">,</span> Serializable <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">DefaultAopProxyFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
 
-    public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
-        //此处判断目标类是否不需要对代理策略进行优化 目标类是否Proxy类型以及目标类是否是接口 则使用JDK动态代理
-        if (!config.isOptimize() &amp;&amp; !config.isProxyTargetClass() &amp;&amp; !this.hasNoUserSuppliedProxyInterfaces(config)) {
-            return new JdkDynamicAopProxy(config);
-        } else {
+    <span class="token keyword">public</span> AopProxy <span class="token function">createAopProxy</span><span class="token punctuation">(</span>AdvisedSupport config<span class="token punctuation">)</span> <span class="token keyword">throws</span> AopConfigException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//此处判断目标类是否不需要对代理策略进行优化 目标类是否Proxy类型以及目标类是否是接口 则使用JDK动态代理</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>config<span class="token punctuation">.</span><span class="token function">isOptimize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>config<span class="token punctuation">.</span><span class="token function">isProxyTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasNoUserSuppliedProxyInterfaces</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JdkDynamicAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
 
-            Class&lt;?&gt; targetClass = config.getTargetClass();
-            if (targetClass == null) {
-                throw new AopConfigException(&quot;TargetSource cannot determine target class: Either an interface or a target is required for proxy creation.&quot;);
-            } else {
-             //如果不是接口并且不是Proxy类型则使用CGLIB动态代理，否则是否JDK动态代理
-                return (AopProxy)(!targetClass.isInterface() &amp;&amp; !Proxy.isProxyClass(targetClass) ? new ObjenesisCglibAopProxy(config) : new JdkDynamicAopProxy(config));
-            }
-        }
-    }
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> targetClass <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">getTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>targetClass <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">AopConfigException</span><span class="token punctuation">(</span><span class="token string">"TargetSource cannot determine target class: Either an interface or a target is required for proxy creation."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+             <span class="token comment" spellcheck="true">//如果不是接口并且不是Proxy类型则使用CGLIB动态代理，否则是否JDK动态代理</span>
+                <span class="token keyword">return</span> <span class="token punctuation">(</span>AopProxy<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">!</span>targetClass<span class="token punctuation">.</span><span class="token function">isInterface</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>Proxy<span class="token punctuation">.</span><span class="token function">isProxyClass</span><span class="token punctuation">(</span>targetClass<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token keyword">new</span> <span class="token class-name">ObjenesisCglibAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">JdkDynamicAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    private boolean hasNoUserSuppliedProxyInterfaces(AdvisedSupport config) {
-        Class&lt;?&gt;[] ifcs = config.getProxiedInterfaces();
-        return ifcs.length == 0 || ifcs.length == 1 &amp;&amp; SpringProxy.class.isAssignableFrom(ifcs[0]);
-    }
-}</code></pre><h4 id="12-AOP应用场景"><a href="#12-AOP应用场景" class="headerlink" title="12.AOP应用场景?"></a>12.AOP应用场景?</h4><p>Authentication 权限<br>Caching 缓存<br>Context passing 内容传递<br>Error handling 错误处理<br>Lazy loading　懒加载<br>Debugging　　调试<br>logging, tracing, profiling and monitoring　记录跟踪　优化　校准<br>Performance optimization　性能优化<br>Persistence　　持久化<br>Resource pooling　资源池<br>Synchronization　同步<br>Transactions 事务</p>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">hasNoUserSuppliedProxyInterfaces</span><span class="token punctuation">(</span>AdvisedSupport config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> ifcs <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">getProxiedInterfaces</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ifcs<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> ifcs<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> SpringProxy<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>ifcs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="12-AOP应用场景"><a href="#12-AOP应用场景" class="headerlink" title="12.AOP应用场景?"></a>12.AOP应用场景?</h4><p>Authentication 权限<br>Caching 缓存<br>Context passing 内容传递<br>Error handling 错误处理<br>Lazy loading　懒加载<br>Debugging　　调试<br>logging, tracing, profiling and monitoring　记录跟踪　优化　校准<br>Performance optimization　性能优化<br>Persistence　　持久化<br>Resource pooling　资源池<br>Synchronization　同步<br>Transactions 事务</p>
 
             </div>
             <hr />
