@@ -512,27 +512,6 @@
     </div>
 
     
-    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
-<link rel="stylesheet" href="/css/my-gitalk.css">
-
-<div class="card gitalk-card" data-aos="fade-up">
-    <div id="gitalk-container" class="card-content"></div>
-</div>
-
-<script src="/libs/gitalk/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: '48ad77e3cd4be6a7b118',
-        clientSecret: '67c16942996c0ba21e89671d21851fccb148176a',
-        repo: 'yangttaaoo.github.io',
-        owner: 'yangttaaoo',
-        admin: "yangttaaoo",
-        id: '2020-06-04T09-29-42',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-    gitalk.render('gitalk-container');
-</script>
-    
 
     
 
@@ -1061,29 +1040,7 @@
     });
 </script>
 
-{% elseif theme.gitalk.enable %}
-    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
-<link rel="stylesheet" href="/css/my-gitalk.css">
 
-<div class="card gitalk-card" data-aos="fade-up">
-    <div id="gitalk-container" class="card-content"></div>
-</div>
-
-<script src="/libs/gitalk/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: '48ad77e3cd4be6a7b118',
-        clientSecret: '67c16942996c0ba21e89671d21851fccb148176a',
-        repo: 'yangttaaoo.github.io',
-        owner: 'yangttaaoo',
-        admin: "yangttaaoo",
-        id: '2020-06-04T09-29-42',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-
-    gitalk.render('gitalk-container');
-</script>
-{% endif %}
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 <!-- 代码语言 -->
 <script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
