@@ -4,11 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="数组和链表对于内存以及CPU的访问缓存机制, 杨涛的博客">
+    <meta name="keywords" content="mysql索引原理, 杨涛的博客">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="CPU缓存对数组友好而对链表不友好数组简单易用，在实现上使用的是连续的内存空间，可以借助CPU的缓存机制，预读数组中的数据，每一次CPU在读取内存中的数组时不是单纯的只读取某个特定的访问地址，而是读取一个数据块（视情况而定的一段连续的内存地">
+    <meta name="description" content="一、什么是索引？
+索引就好比一本书的目录，它能让你更快的找到自己想要的内容。
+让获取的数据更有目的性，从而提高数据库检索数据的性能。二、索引方法
+BTREE:B+树索引 ( Btree B+tree B*tree)
+
+&amp;nbsp;&amp;nbsp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>数组和链表对于内存以及CPU的访问缓存机制 | 杨涛的博客</title>
+    <title>mysql索引原理 | 杨涛的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -266,13 +271,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        数组和链表对于内存以及CPU的访问缓存机制
+                        mysql索引原理
                     </div>
                 </div>
             </div>
@@ -383,16 +388,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/数组/" target="_blank">
-                            <span class="chip bg-color">数组</span>
-                        </a>
-                        
-                        <a href="/tags/链表/" target="_blank">
-                            <span class="chip bg-color">链表</span>
-                        </a>
-                        
-                        <a href="/tags/CPU缓存/" target="_blank">
-                            <span class="chip bg-color">CPU缓存</span>
+                        <a href="/tags/mysql/" target="_blank">
+                            <span class="chip bg-color">mysql</span>
                         </a>
                         
                     </div>
@@ -403,8 +400,12 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/缓存机制/" class="post-category" target="_blank">
-                            缓存机制
+                        <a href="/categories/mysql/" class="post-category" target="_blank">
+                            mysql
+                        </a>
+                        
+                        <a href="/categories/mysql/索引/" class="post-category" target="_blank">
+                            索引
                         </a>
                         
                     </div>
@@ -415,7 +416,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-04
+                    2020-07-23
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -429,14 +430,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    327
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    13 分
                 </div>
                 
                 
@@ -447,9 +448,145 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="CPU缓存对数组友好而对链表不友好"><a href="#CPU缓存对数组友好而对链表不友好" class="headerlink" title="CPU缓存对数组友好而对链表不友好"></a>CPU缓存对数组友好而对链表不友好</h3><p>数组简单易用，在实现上使用的是连续的内存空间，可以借助CPU的缓存机制，预读数组中的数据，每一次CPU在读取内存中的数组时不是单纯的只读取某个特定的访问地址，而是读取一个<font color="red">数据块</font>（视情况而定的一段连续的内存地址），并保存到CPU的缓存中，下次访问时就会先从CPU缓存中查找，为的就是弥补CPU速度过快而内存过慢导致的速度差异。</p>
-<p>对于数组和链表两种数据结构，由于数组是一块连续的内存空间，<font color="red">在读取某个下标的数据时CPU就会缓存连续的几个元素加载到缓存中，</font>而链表不是连续的，链表的节点是分散在堆空间（内存）里面,CPU缓存帮不上忙，这样数组执行速度会快于存储空间不连续的链表存储，理论上CPU访问数组比链表快了大约33倍</p>
-<p>因此，程序中尽量使用连续的数据结构，这样可以充分发挥CPU缓存的威力。 这种对缓存友好的算法称为 <font color="red">Cache-oblivious algorithm</font></p>
+                <h3 id="一、什么是索引？"><a href="#一、什么是索引？" class="headerlink" title="一、什么是索引？"></a>一、什么是索引？</h3><ul>
+<li>索引就好比一本书的目录，它能让你更快的找到自己想要的内容。</li>
+<li>让获取的数据更有目的性，从而提高数据库检索数据的性能。<h3 id="二、索引方法"><a href="#二、索引方法" class="headerlink" title="二、索引方法"></a>二、索引方法</h3></li>
+<li>BTREE:B+树索引 ( Btree B+tree B*tree)</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;B-Tree是最常见的索引类型，所有的列都是排序过的，每个叶节点跟节点距离相等。</p>
+<ul>
+<li>HASH：HASH索引 (hash key)</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1.仅支持”=”,”IN”和”&lt;=&gt;”精确查询，不能使用范围查询：<br>由于Hash索引比较的是进行Hash运算之后的Hash值，所以它只能用于等值的过滤，不能用于基于范围的过滤。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2.不支持排序：<br>由于Hash索引中存放的是经过Hash计算之后的Hash值，而且Hash值的大小关系并不一定和Hash运算前的键值完全一样，所以数据库无法利用索引的数据来避免任何排序运算</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3.在任何时候都不能避免行读取：<br>由于Hash索引比较的是进行Hash运算之后的Hash值，所以即使取满足某个Hash键值的数据的记录条数，也无法从Hash索引中直接完成查询，还是要通过访问表中的实际数据进行相应的比较，并得到相应的结果。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;4.检索效率高，索引的检索可以一次定位，不像B-Tree索引需要从根节点到枝节点，最后才能访问到页节点这样多次的IO访问，所以Hash索引的查询效率要远高于B-Tree索引</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;5.只有Memory引擎支持显式的Hash索引，但是它的Hash是nonunique的，冲突太多时也会影响查找性能。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引，Innodb不能显示的定义Hash索引，称为自适应Hash,Innodb存储引擎会根据表的使用情况自动为表生成Hash索引，不能认为的干预是否在一张表中生成Hash索引。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;当Innodb注意到某些索引值被使用得非常频繁的时候，它会在内存中基于B-Tree索引之上再创建一个Hash索引，这样让B-Tree也具有Hash索引的一些优点，比如快速查找，时间复杂度为O(1)</p>
+<ul>
+<li>R_Tree索引</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;R-Tree在MySQL很少使用，仅支持geometry数据类型，支持该类型的存储引擎只有MyISAM、BDb、InnoDb、NDb、Archive几种。</p>
+<p>相对于b-tree，r-tree的优势在于范围查找。</p>
+<ul>
+<li>full-text索引</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;full-text在mysql里仅有myisam支持它，InnoDB引擎对FULLTEXT索引的支持是MySQL5.6新引入的特性，而且支持full-text的字段只有char、varchar、text数据类型。full-text主要是用来代替like “%***%”效率低下的问题</p>
+<h3 id="三、索引类型"><a href="#三、索引类型" class="headerlink" title="三、索引类型"></a>三、索引类型</h3><ul>
+<li>主键索引 是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。一般是在建表的时候同时创建主键索引。</li>
+<li>普通索引 最基本的索引，它没有任何限制，用于加速查询。</li>
+<li>唯一索引 索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。</li>
+<li>组合索引 指多个字段上创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用。使用组合索引时遵循最左前缀集合。</li>
+<li>全文索引 主要用来查找文本中的关键字，而不是直接与索引中的值相比较。fulltext索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的where语句的参数匹配。fulltext索引配合match against操作使用，而不是一般的where语句加like。它可以在create table，alter table ，create index使用，不过目前只有char、varchar，text列上可以创建全文索引。对文本的内容进行分词，进行搜索 </li>
+</ul>
+<p>==小结：虽然索引可以增加查询数据，但对于更新、创建或者删除的时候，需要去维护索引，导致性能会受影响，因此，索引也不能建立太多。==</p>
+<p>1.创建索引</p>
+<p>alter table test01 add index idx_name(name);</p>
+<p>create index index_name on test01(name);</p>
+<p>2.删除索引</p>
+<p>alter table test drop key index_name;</p>
+<p>3.查看索引</p>
+<pre><code>desc test01;
+
+show index from test01;
+
+show create table test01;</code></pre><h3 id="四、索引数据结构"><a href="#四、索引数据结构" class="headerlink" title="四、索引数据结构"></a>四、索引数据结构</h3><p>==问题为什么mysql中采用B+树作为索引数据结构？==<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" title="标题" target="_blank" rel="noopener">数据结构</a></p>
+<ul>
+<li><p>二叉树搜索树（Binary Search Tree）BST</p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/souyin1.png" alt="二叉树"></p>
+<!--![二叉搜索树（二叉排序树）](https://yt-1300603068.cos.ap-chengdu.myqcloud.com/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%EF%BC%88%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%EF%BC%89.png)-->
+<p>&nbsp;&nbsp;&nbsp;&nbsp;二叉树搜索树的特点</p>
+</li>
+<li><p>所有结点至多拥有两个儿子（Left和Right）；</p>
+</li>
+<li><p>所有结点只存储一个关键字（可以理解为索引，比如ID值）；</p>
+</li>
+<li><p>非叶子结点的左指针指向小于其关键字的子树，右指针指向大于其关键字的子树；</p>
+</li>
+<li><p>二叉搜索树如果是满二叉树时，查找的性能逼近有序数组的二分查找，同时插入的性能远远高于有序数组，因为只需要再对应的节点添加引用，而不需要移动任何老的节点</p>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;如上图树的高度和磁盘IO的次数都是3，所以最坏的情况下磁盘IO的次数由树的高度来决定。由于特性原因，假如一直插入递增的数据，则退化成链表，树也就失衡了，查询时间复杂度为O(n)。</p>
+ <!--![失衡二叉排序树](https://yt-1300603068.cos.ap-chengdu.myqcloud.com/%E5%A4%B1%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91.png)-->
+
+
+
+
+
+<ul>
+<li>AVL树和红黑树</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1.AVL:自平衡二叉查找树，解决二叉树不平衡问题，在插入和删除时通过节点的自旋来让二叉树保持平衡，AVL追求极致的平衡。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;同样红黑树相比平衡二叉树的极致平衡红黑树只追求大致的平衡，保证每次插入最多只需要三次旋转就能达到平衡，红黑树保持平衡主要靠的节点颜色的变换和左旋右旋，红黑树保持了树的基本平衡，也让插入和删除产生的旋转不至于像AVL那样又太大的性能消耗，也不至于像二叉搜索树那样退化成链表，红黑树拥有不错的平均查找效率，也不存在极端的 O(n)情况。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;红黑树的特征</p>
+<ul>
+<li>每个节点不是红色就是黑色</li>
+<li>不可能有连在一起的红色</li>
+<li>根节点都是黑色</li>
+<li>每个红色节点的两个子节点都是黑色，叶子节点(NIL)都是黑色：出度为0，满足了性质就可以近似平衡。</li>
+<li>黑高度：从某个结点x出发（不包括该结点）到达一个叶结点的任意一条路径上，黑色结点的个数称为该结点x的黑高度。</li>
+<li>一颗有n个内结点的红黑树的高度至多为2lg(n+1)。（内结点视为红黑树中带关键字的结点）</li>
+<li>包含n个内部节点的红黑树的高度是O(log(n))。</li>
+</ul>
+<p>==&nbsp;&nbsp;&nbsp;&nbsp;为什么不采用红黑树作为Mysql底层索引结构？==</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;不采用二叉树作为mysql索引数据结构。主要是靠率树的高度带来的频繁磁盘IO和平衡问题。</p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/hongheishu1.png" alt="红黑树"></p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/hongheishu2.png" alt="红黑树"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;红黑树并没有完全解决二叉查找树这个“右倾”趋势远没有二叉查找树退化为线性链表那么夸张，但是数据库中的基本主键自增操作，主键一般都是数百万数千万的，如果红黑树存在这种问题，对于查找性能而言也是巨大的消耗，我们数据库不可能忍受这种无意义的等待的。</p>
+<ul>
+<li>Hash表<br><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/hash.png" alt="B-树"></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;哈希算法有个数据碰撞的问题，也就是哈希函数可能对不同的 key 会计算出同一个结果，比如 hash(7)可能跟 hash(199)计算出来的结果一样，也就是不同的 key 映射到同一个结果了，这就是碰撞问题。解决碰撞问题的一个常见处理方式就是链地址法，即用链表把碰撞的数据接连起来。计算哈希值之后，还需要检查该哈希值是否存在碰撞数据链表，有则一直遍历到链表尾，直达找到真正的 key 对应的数据为止。</p>
+<p>==&nbsp;&nbsp;&nbsp;&nbsp;为什么不采用哈希表作为Mysql底层索引结构？==</p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/hashpengzhuang.png" alt="哈希冲突"></p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/hashchaxun.png" alt="Mysql Hash索引"></p>
+<ul>
+<li>B-树 </li>
+</ul>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/B.png" alt="B-树"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;叶子节点具有相同的深度，叶子节点的指针为空</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;所有元素不重复</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;节点中的数据索引从左到右递增排列</p>
+<ul>
+<li>B+树</li>
+</ul>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/B%2B.png" alt="B+树"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;B+树的结构特点</p>
+<ul>
+<li>B+树索引并不能找到一个给定键值的具体行，它找到的只是被查找数据行所在的页，接着数据库会把页读入到内存，再在内存中进行查找，最后得到要查找的数据。数据的读取是精确到页的，因为页是计算机管理存储器的逻辑块，IO的磁盘读取，每次都读取数据的大小是一个页大小的整数倍。</li>
+<li>假设B+Tree的高度为h，一次检索最多需要h-1次I/O（根节点常驻内存），复杂度O(h) = O(logmN)，m指的是一个节点存储的数据的个数。实际应用场景中，M通常较大，常常超过100，因此树的高度一般都比较小，通常不超过3。</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;B+树与B树的不同在于：</p>
+<ul>
+<li>所有关键字存储在叶子节点，非叶子节点不存储真正的data</li>
+<li>为所有叶子节点（左右相邻的节点之间）增加了一个链指针</li>
+</ul>
+<h4 id="B-树的插入、删除操作"><a href="#B-树的插入、删除操作" class="headerlink" title="B+树的插入、删除操作"></a>B+树的插入、删除操作</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://blog.csdn.net/sunshine_lyn/article/details/82747596" title="标题" target="_blank" rel="noopener">B+树的插入和删除</a></p>
+<p>==为什么mysql的索引使用B+树而不是B树呢？==</p>
+<ul>
+<li>范围查找更快，mysql是关系型数据库，经常会按照区间来访问某个索引列，B+树的叶子节点间按顺序建立了链指针，加强了区间访问性，所以B+树对索引列上的区间范围查询很友好。而B树的数据有一部分存在在非叶子节点上面，而且默认的B树的相邻的叶子节点之间是没有指针的，所以范围查找相对更慢。</li>
+<li>降低树的高度，但是最底下一层的节点会更多，因为所有的数据都堆积在最底下一层了，用空间换速度。B+树更适合外部存储(一般指磁盘存储),由于内节点(非叶子节点)不存储data，所以一个节点可以存储更多的内节点，每个节点能索引的范围更大更精确。也就是说使用B+树单次磁盘IO的信息量相比较B树更大，IO效率更高</li>
+</ul>
+<h3 id="五-局部性原理"><a href="#五-局部性原理" class="headerlink" title="五.局部性原理"></a>五.局部性原理</h3><p>1.磁盘iO与预读</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;简单来说，磁盘读取数据靠的是机械运动，每次读取数据花费的时间可以分为寻道时间、旋转延迟、传输时间三个部分，比如一个磁盘7200转，表示每分钟能转7200次，也就是说1秒钟能转120次，旋转延迟就是1/120/2 = 4.17ms；传输时间指的是从磁盘读出或将数据写入磁盘的时间，一般在零点几毫秒，相对于前两个时间可以忽略不计。那么访问一次磁盘的时间，即一次磁盘IO的时间约等于5+4.17 = 9ms左右，这个成本是访问内存的十万倍左右。因此操作系统对此做了优化：预读，每一次IO时，不仅仅把当前磁盘地址的数据加载到内存，同时也把相邻数据也加载到内存缓冲区中。因为局部预读原理说明：当访问一个地址数据的时候，与其相邻的数据很快也会被访问到。每次磁盘IO读取的数据我们称之为一页（page）。一页的大小与操作系统有关，一般为4k或者8k。这也就意味着读取一页内数据的时候，实际上发生了一次磁盘IO。<br>在mysql中一页的定义为16kb,可以进行修改的。<br> <img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/page.png" alt="Mysql Page大小"></p>
+<h3 id="六、Innodb-引擎和-Myisam-引擎的实现"><a href="#六、Innodb-引擎和-Myisam-引擎的实现" class="headerlink" title="六、Innodb 引擎和 Myisam 引擎的实现"></a>六、Innodb 引擎和 Myisam 引擎的实现</h3><ul>
+<li><p>聚簇索引：Innodb的主索引采用的是聚簇索引，一个表只能有1个聚簇索引，因为表数据存储的物理位置是唯一的。聚簇索引的value存的就是真实的数据，不是数据的地址。主索引树里面包含了真实的数据。key是主键值，value值就是data，key值按照B+树的规则分散排布的叶子节点。</p>
+</li>
+<li><p>非聚簇索引：Myisam的主索引和辅助索引都采用的是非聚簇索引，索引和表数据是分离的，索引的value值指向的物理的存储地址。</p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/juji.png" alt="聚集索引和非聚集索引"></p>
+</li>
+</ul>
+<p> <img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/myisam.png" alt="非聚集索引，主索引"></p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/fuzhusuoyin.png" alt="非聚集索引辅助索引"></p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/innodbzhusuoyin.png" alt="Innodb辅助索引"></p>
+<p><img src="https://yt-1300603068.cos.ap-chengdu.myqcloud.com/mysql/innodbfuzhusuoyin.png" alt="Innodb辅助索引"></p>
+<h3 id="七、mysql索引失效的一些情况"><a href="#七、mysql索引失效的一些情况" class="headerlink" title="七、mysql索引失效的一些情况"></a>七、mysql索引失效的一些情况</h3><p>1.使用多列作为索引，则需要遵循最左前缀匹配原则（查询从索引的最左前列开始并且不跳过索引中的列）</p>
+<p>2.不再索引列上做任何操作，例如（计算，函数，（自动 or 手动的类型转换）），会导致索引失效而转向全表扫描</p>
+<p>3.尽量使用覆盖索引（之访问索引列的查询），减少select *,覆盖索引能减少回表次数；</p>
+<p>4.mysql再使用不等于（！=或者&lt;&gt;）的时候无法使用索引会导致全表扫描</p>
+<p>5.like以通配符开头（%abc） mysql索引会失效变成全表扫描的操作；</p>
+<p>6.字符串不加单引号会导致索引失效（可能发生了索引列的隐式转换）</p>
+<p>7.少用or，用它来连接时会索引失效。要想or条件索引不失效，则把每个列都加上索引。</p>
 
             </div>
             <hr />
@@ -484,9 +621,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《数组和链表对于内存以及CPU的访问缓存机制》
+                    《mysql索引原理》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/06/04/arr-cpu/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/23/mysql-index/" property="cc:attributionName"
                rel="cc:attributionURL">
                 YT
             </a> 采用
@@ -792,6 +929,59 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/07/23/red-black-tree/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="红黑树">
+                        
+                        <span class="card-title">红黑树</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            红黑树1.什么是红黑树
+红黑树是一种平衡的二叉查找树，能够保证在最坏的情况下动态集合操作的时间复杂度为O(logN),红黑树每个节点包括五个域，分别为left、right、parent、color、key。
+2.红黑树的特征
+
+每个节点不是
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/红黑树/" class="post-category" target="_blank">
+                                    红黑树
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/数据结构/" target="_blank">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/07/07/spring-ioc-he-aop/">
                     <div class="card-image">
                         
@@ -808,9 +998,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -828,64 +1018,6 @@
                     
                     <a href="/tags/Spring/" target="_blank">
                         <span class="chip bg-color">Spring</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/06/04/arr-cpu/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="数组和链表对于内存以及CPU的访问缓存机制">
-                        
-                        <span class="card-title">数组和链表对于内存以及CPU的访问缓存机制</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            本文介绍了cpu缓存机制对于数组和链表的访问
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-04
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/缓存机制/" class="post-category" target="_blank">
-                                    缓存机制
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/数组/" target="_blank">
-                        <span class="chip bg-color">数组</span>
-                    </a>
-                    
-                    <a href="/tags/链表/" target="_blank">
-                        <span class="chip bg-color">链表</span>
-                    </a>
-                    
-                    <a href="/tags/CPU缓存/" target="_blank">
-                        <span class="chip bg-color">CPU缓存</span>
                     </a>
                     
                 </div>
