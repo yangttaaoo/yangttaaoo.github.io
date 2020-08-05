@@ -8,11 +8,11 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Oracle导入导出dmp文件一、创建用户并赋予权限
+    <meta name="description" content="Oracle导入导出dmp文件####一、创建用户并赋予权限
 
 1.create user test identified by test
 2.grant connect,resource,dba to test
-3.grant all privi">
+3.grant all p">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -447,36 +447,37 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Oracle导入导出dmp文件"><a href="#Oracle导入导出dmp文件" class="headerlink" title="Oracle导入导出dmp文件"></a>Oracle导入导出dmp文件</h3><p>一、创建用户并赋予权限</p>
+                <h3 id="Oracle导入导出dmp文件"><a href="#Oracle导入导出dmp文件" class="headerlink" title="Oracle导入导出dmp文件"></a>Oracle导入导出dmp文件</h3><p>####一、创建用户并赋予权限</p>
 <pre><code>
 1.create user test identified by test
 2.grant connect,resource,dba to test
 3.grant all privileges to test
-</code></pre><p>二、oracle备份数据<br>安装oracle客户端生成exp imp文件才能进行导入导出或者服务端自带了exp和imp<br>EXP导出是表空间为空的表无法导出</p>
-<p>1.解决方案</p>
+</code></pre><p>####二、oracle备份数据<br>安装oracle客户端生成exp imp文件才能进行导入导出或者服务端自带了exp和imp<br>EXP导出是表空间为空的表无法导出</p>
+<p>#####1.解决方案</p>
 <pre><code>（1）.select &#39;alter table &#39;||table_name||&#39; allocate extent;&#39; from user_tables where num_rows=0;
-（2）.将查询结果复制执行即可</code></pre><p>2.dmp 方式导出<br>用户方式导出</p>
+（2）.将查询结果复制执行即可</code></pre><p>#####2.dmp 方式导出</p>
+<ul>
+<li>用户方式导出</li>
+</ul>
 <pre><code>EXP test/test@orcl BUFFER=64000 FILE=D:\test.dmp OWNER=test log=D:\test.log
 
-EXP test/test@192.168.100.183:1521/xe BUFFER=64000 FILE=D:\test.dmp OWNER=test log=D:\test.log</code></pre><p>用户方式导入</p>
+EXP test/test@192.168.100.183:1521/xe BUFFER=64000 FILE=D:\test.dmp OWNER=test log=D:\test.log</code></pre><ul>
+<li>用户方式导入</li>
+</ul>
 <pre><code>IMP test/test@orcl BUFFER=64000 FILE=D:\test.dmp FROMUSER=test TOUSER=test01 log=D:\test.log
 
 IMP test/test@192.168.100.183:1521/xe BUFFER=64000 FILE=D:\test.dmp FROMUSER=test TOUSER=test01 log=D:\test.log
 
 imp test/test@192.168.1.100:1521/orcl full=y file=C:test.dmp
-</code></pre><p>exp三种用法：</p>
-<p>1、exp 导出某个用户全部数据库</p>
-<p>格式：exp ywxy/ywxy@ORCL file=d:/daochu1.dmp full=y;</p>
+</code></pre><h4 id="exp三种用法："><a href="#exp三种用法：" class="headerlink" title="exp三种用法："></a>exp三种用法：</h4><h5 id="1、exp-导出某个用户全部数据库"><a href="#1、exp-导出某个用户全部数据库" class="headerlink" title="1、exp 导出某个用户全部数据库"></a>1、exp 导出某个用户全部数据库</h5><p>格式：exp ywxy/ywxy@ORCL file=d:/daochu1.dmp full=y;</p>
 <p>ywxy/ywxy@ORCL  是用户名/密码@数据库名</p>
 <p>file=d:/daochu1.dmp  是导出的路径</p>
 <p>full=y 是导出全库</p>
-<p>2、exp 导出某个用户的某个库</p>
-<p>格式：exp ywxy/ywxy@ORCL file=d:/daochu1.dmp owner=system;</p>
+<h5 id="2、exp-导出某个用户的某个库"><a href="#2、exp-导出某个用户的某个库" class="headerlink" title="2、exp 导出某个用户的某个库"></a>2、exp 导出某个用户的某个库</h5><p>格式：exp ywxy/ywxy@ORCL file=d:/daochu1.dmp owner=system;</p>
 <p>ywxy/ywxy@ORCL  是用户名/密码@数据库名</p>
 <p>file=d:/daochu1.dmp  是导出的路径</p>
 <p>owner=system 是要导出的库</p>
-<p>3、exp 导出某个用户的某个表</p>
-<p>格式：exp ywxy/ywxy@ORCL file=d:/daochu1.dmp tables=C_ZX_QYJC;</p>
+<h5 id="3、exp-导出某个用户的某个表"><a href="#3、exp-导出某个用户的某个表" class="headerlink" title="3、exp 导出某个用户的某个表"></a>3、exp 导出某个用户的某个表</h5><p>格式：exp ywxy/ywxy@ORCL file=d:/daochu1.dmp tables=C_ZX_QYJC;</p>
 <p>ywxy/ywxy@ORCL  是用户名/密码@数据库名</p>
 <p>file=d:/daochu1.dmp  是导出的路径</p>
 <p>tables=C_ZX_QYJC  是导出的表名字，多个表名则 (table1,table2)形式</p>
@@ -843,11 +844,11 @@ imp test/test@192.168.1.100:1521/orcl full=y file=C:test.dmp
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Oracle导入导出dmp文件一、创建用户并赋予权限
+                            Oracle导入导出dmp文件####一、创建用户并赋予权限
 
 1.create user test identified by test
 2.grant connect,resource,dba to test
-3.grant all privi
+3.grant all p
                         
                     </div>
                     <div class="publish-info">
