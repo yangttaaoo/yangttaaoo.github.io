@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yangttaaoo.github.io/"/>
-  <updated>2020-08-05T12:19:23.803Z</updated>
+  <updated>2020-08-05T12:27:40.574Z</updated>
   <id>https://yangttaaoo.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Oracle导出导入dum文件</title>
+    <title>Oracle导出导入dmp文件</title>
     <link href="https://yangttaaoo.github.io/2020/08/05/oracle-dao-chu-dao-ru-dum-wen-jian/"/>
     <id>https://yangttaaoo.github.io/2020/08/05/oracle-dao-chu-dao-ru-dum-wen-jian/</id>
     <published>2020-08-05T10:05:52.000Z</published>
-    <updated>2020-08-05T12:19:23.803Z</updated>
+    <updated>2020-08-05T12:27:40.574Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h3 id=&quot;Oracle导入导出dum文件&quot;&gt;&lt;a href=&quot;#Oracle导入导出dum文件&quot; class=&quot;headerlink&quot;
+          &lt;h3 id=&quot;Oracle导入导出dmp文件&quot;&gt;&lt;a href=&quot;#Oracle导入导出dmp文件&quot; class=&quot;headerlink&quot;
         
       
     
@@ -40,7 +40,7 @@
     
       <category term="Oracle" scheme="https://yangttaaoo.github.io/tags/Oracle/"/>
     
-      <category term="dum" scheme="https://yangttaaoo.github.io/tags/dum/"/>
+      <category term="dmp" scheme="https://yangttaaoo.github.io/tags/dmp/"/>
     
   </entry>
   
