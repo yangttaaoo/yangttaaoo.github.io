@@ -1,3 +1,5 @@
+https://yangttaaoo.github.io/2020/08/05/oracle-dao-chu-dao-ru-dum-wen-jian/
+https://yangttaaoo.github.io/2020/08/05/ji-yi-ci-oracle-cun-chu-guo-cheng-zhong-de-yi-chang/
 https://yangttaaoo.github.io/2020/07/23/red-black-tree/
 https://yangttaaoo.github.io/2020/07/23/mysql-index/
 https://yangttaaoo.github.io/2020/07/07/spring-ioc-he-aop/

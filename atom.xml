@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yangttaaoo.github.io/"/>
-  <updated>2020-07-23T14:50:43.448Z</updated>
+  <updated>2020-08-05T12:19:23.803Z</updated>
   <id>https://yangttaaoo.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oracle导出导入dum文件</title>
+    <link href="https://yangttaaoo.github.io/2020/08/05/oracle-dao-chu-dao-ru-dum-wen-jian/"/>
+    <id>https://yangttaaoo.github.io/2020/08/05/oracle-dao-chu-dao-ru-dum-wen-jian/</id>
+    <published>2020-08-05T10:05:52.000Z</published>
+    <updated>2020-08-05T12:19:23.803Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Oracle导入导出dum文件&quot;&gt;&lt;a href=&quot;#Oracle导入导出dum文件&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://yangttaaoo.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="Oracle" scheme="https://yangttaaoo.github.io/tags/Oracle/"/>
+    
+      <category term="dum" scheme="https://yangttaaoo.github.io/tags/dum/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次oracle存储过程中的异常处理</title>
+    <link href="https://yangttaaoo.github.io/2020/08/05/ji-yi-ci-oracle-cun-chu-guo-cheng-zhong-de-yi-chang/"/>
+    <id>https://yangttaaoo.github.io/2020/08/05/ji-yi-ci-oracle-cun-chu-guo-cheng-zhong-de-yi-chang/</id>
+    <published>2020-08-05T09:41:58.000Z</published>
+    <updated>2020-08-05T12:16:43.196Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Oracle中存储过程的异常处理&quot;&gt;&lt;a href=&quot;#Oracle中存储过程的异常处理&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://yangttaaoo.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="Oracle" scheme="https://yangttaaoo.github.io/tags/Oracle/"/>
+    
+      <category term="存储过程" scheme="https://yangttaaoo.github.io/tags/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>红黑树</title>
@@ -47,7 +103,7 @@
     <link href="https://yangttaaoo.github.io/2020/07/23/mysql-index/"/>
     <id>https://yangttaaoo.github.io/2020/07/23/mysql-index/</id>
     <published>2020-07-23T14:44:12.000Z</published>
-    <updated>2020-07-23T14:45:24.446Z</updated>
+    <updated>2020-08-05T12:16:43.190Z</updated>
     
     <summary type="html">
     
