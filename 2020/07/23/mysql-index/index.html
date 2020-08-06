@@ -695,7 +695,12 @@ show variables like &#39;innodb_stats_auto_recalc&#39;;  -- 该变量决定着�
 </ul>
 <p>基本语法</p>
 <pre><code>SELECT * FROM table1 USE|IGNORE|FORCE INDEX (col1_index,col2_index) WHERE col1=1 AND
-col2=2 AND col3=3;</code></pre><h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+col2=2 AND col3=3;</code></pre><h4 id="3-查询优化器日志"><a href="#3-查询优化器日志" class="headerlink" title="3.查询优化器日志"></a>3.查询优化器日志</h4><pre><code>SET optimizer_trace=&quot;enabled=on&quot;;
+-- explain SELECT create_time FROM person WHERE NAME &gt;&#39;name84059&#39; AND create_time &gt; &#39;2020-05-23 14:39:18&#39;;
+SELECT count(*) FROM person where `name`=&#39;name&#39;;
+SELECT * FROM information_schema.OPTIMIZER_TRACE;
+SET optimizer_trace=&quot;enabled=off&quot;;
+</code></pre><h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
 <li>索引列的类型尽量小</li>
 <li>利用索引字符串值的前缀</li>
 <li>主键自增</li>
