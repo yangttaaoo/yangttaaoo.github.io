@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yangttaaoo.github.io/2020/07/23/mysql-index/</loc>
+    
+    <lastmod>2020-08-06T14:26:00.191Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yangttaaoo.github.io/2020/08/05/oracle-dao-chu-dao-ru-dum-wen-jian/</loc>
     
     <lastmod>2020-08-05T12:42:49.704Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://yangttaaoo.github.io/2020/08/05/ji-yi-ci-oracle-cun-chu-guo-cheng-zhong-de-yi-chang/</loc>
     
     <lastmod>2020-08-05T12:16:43.196Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yangttaaoo.github.io/2020/07/23/mysql-index/</loc>
-    
-    <lastmod>2020-08-05T12:16:43.190Z</lastmod>
     
   </url>
   
